@@ -39,7 +39,6 @@ class Create extends Component {
     }
 
     render() {
-        let { sleep, stress, energy, mood, diet, createdAt } = this.state
         return (
             <div>
             <InputForm />

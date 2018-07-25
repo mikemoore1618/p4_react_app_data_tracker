@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend } from 'recharts'
-import { formattedDate, inputCheck } from '../helpers'
+import { formattedDate } from '../helpers'
 import Calendar from 'react-calendar/dist/entry.nostyle'
 // import Calendar from 'react-calendar';
 
@@ -19,6 +19,18 @@ componentDidMount() {
       this.setState({ metrics: apiResponse.data.payload })
     })
   }
+
+  handleInputCheck = () => {
+    // Get the checkbox
+    // If the checkbox is checked
+    this.setState({ showResults: true });
+    //show line of data
+    console.log("checked")
+  
+    //hide line of data
+    this.setState({ showResults: false });
+    }
+
   
 
 render() {
@@ -42,11 +54,11 @@ render() {
             </LineChart>
 
             
-            <input type="checkbox" id="sleep" value="sleep" onClick={this.inputCheck}/>
-            <input type="checkbox" id="stress" value="stress" onClick={this.inputCheck}/>
-            <input type="checkbox" id="mood" value="mood" onClick={this.inputCheck}/>
-            <input type="checkbox" id="energy" value="energy" onClick={this.inputCheck}/>
-            <input type="checkbox" id="diet" value="diet" onClick={this.inputCheck}/>
+            <input type="checkbox" name="sleep" value="sleep" onClick={this.handleInputCheck}/>
+            <input type="checkbox" name="stress" value="stress" onClick={this.handleInputCheck}/>
+            <input type="checkbox" name="mood" value="mood" onClick={this.handleInputCheck}/>
+            <input type="checkbox" name="energy" value="energy" onClick={this.handleInputCheck}/>
+            <input type="checkbox" name="diet" value="diet" onClick={this.handleInputCheck}/>
 
 
             <ul>

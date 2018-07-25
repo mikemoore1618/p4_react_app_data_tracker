@@ -48,8 +48,6 @@ class Edit extends Component {
     }
 
     render() {
-        let { metric, sleep, stress, energy, mood, diet, createdAt } = this.state
-        if(!metric) return <h1>Loading...</h1>
     return(
         <div>
         <InputForm />

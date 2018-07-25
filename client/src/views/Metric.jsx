@@ -35,6 +35,7 @@ class Metric extends React.Component {
         })
       }
 
+     
   render() {
       const { metric } = this.state
       if(!metric) return <h1>Loading...</h1>
