@@ -4,18 +4,19 @@ import { formattedDate } from '../helpers'
 
 
 class InputForm extends React.Component{
-    state = {
-        sleep:'',
-        stress:'',
-        energy: '',
-        mood: '',
-        diet: '',
-        createdAt: formattedDate(new Date(), 'YYYY-MM-DD')
-    }
+    // state = this.props.metric || {
+    //     sleep:'',
+    //     stress:'',
+    //     energy: '',
+    //     mood: '',
+    //     diet: '',
+    //     createdAt: formattedDate(new Date(), 'YYYY-MM-DD')
+    // }
 
     render() {
-        let { metric, sleep, stress, energy, mood, diet, createdAt } = this.state
-        if(!metric) return <h1>Loading...</h1>
+        let { metric, sleep, stress, energy, mood, diet, createdAt } = this.props.metric
+        let { onInputChange } = this.props
+        
     return(
         <div>
         
@@ -23,28 +24,47 @@ class InputForm extends React.Component{
     <form onSubmit={this.handleSubmit}>
         <label >
             Sleep: {sleep}
-            <input onChange={this.handleChange} type="range" min='1' max='10' name="sleep"/>
+            <br/>
+            <input onChange={onInputChange} type="range" min='1' max='10' name="sleep" value={sleep}/>
         </label>
+        <br/>
+        <br/>
         <label >
-            Stress: {stress}
-            <input onChange={this.handleChange} type="range" min='1' max='10' name="stress"/>
+            Stress:{stress}
+            <br/>
+            <input onChange={onInputChange} type="range" min='1' max='10' name="stress" value={stress}/>
         </label>
+        <br/>
+        <br/>
         <label >
-            Energy: {energy}
-            <input onChange={this.handleChange} type="range" min='1' max='10' name="energy"/>
+            Energy:{energy}
+            <br/>
+            <input onChange={onInputChange} type="range" min='1' max='10' name="energy" value={energy}/>
         </label>
+        <br/>
+        <br/>
         <label >
-            Mood: {mood}
-            <input onChange={this.handleChange} type="range" min='1' max='10' name="mood"/>
+            Mood:{mood}
+            <br/>
+            <input onChange={onInputChange} type="range" min='1' max='10' name="mood" value={mood}/>
         </label>
+        <br/>
+        <br/>
         <label >
-            Diet: {diet}
-            <input onChange={this.handleChange} type="range" min='1' max='10' name="diet"/>
+            Diet:{diet}
+            <br/>
+            <input onChange={onInputChange} type="range" min='1' max='10' name="diet" value={diet}/>
         </label>
+        <br/>
+        <br/>
         <label >
-            Date: <input onChange={this.handleChange} type="date" name="createdAt" value={createdAt} />
+            Date:
+            <br/>
+            <input onChange={onInputChange} type="date" name="createdAt" value={createdAt} />
         </label>
-      <button>Record</button>
+        <br/>
+        <br/>
+      <button>Submit</button>
     </form>
 
     </div>

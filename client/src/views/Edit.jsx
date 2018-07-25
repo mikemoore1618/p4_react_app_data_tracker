@@ -7,12 +7,13 @@ const apiClient = axios.create()
 
 class Edit extends Component {
     state = {
-        sleep:'',
-        stress:'',
-        energy: '',
-        mood: '',
-        diet: '',
-        createdAt: formattedDate(new Date(), 'YYYY-MM-DD')
+        metric: null
+        // sleep:'',
+        // stress:'',
+        // energy: '',
+        // mood: '',
+        // diet: '',
+        // createdAt: formattedDate(new Date(), 'YYYY-MM-DD')
     }
 
     componentDidMount() {
@@ -22,24 +23,33 @@ class Edit extends Component {
         .then(response => {
             // console.log(response.data, this)
             let { payload } = response.data
-            this.setState({ metric: payload, sleep: payload.sleep, stress: payload.stress, energy: payload.energy, mood: payload.mood, diet: payload.diet, createdAt: payload.createdAt })
+            this.setState({
+                metric: {
+                    sleep: payload.sleep,
+                    stress: payload.stress,
+                    energy: payload.energy,
+                    mood: payload.mood,
+                    diet: payload.diet,
+                    createdAt: formattedDate(payload.createdAt, 'YYYY-MM-DD')
+                }
+            })
         })
         
     }
 
     handleChange = (event) => {
         event.preventDefault()
-        this.setState({ [event.target.name]: event.target.value })
+        this.setState({ metric: { ...this.state.metric, [event.target.name]: event.target.value } })
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
-        let { sleep, stress, energy, mood, diet } = this.state
+        // let { sleep, stress, energy, mood, diet } = this.state.metric
         let { id } = this.props.match.params
         apiClient({ 
             method: 'patch', 
             url: `/api/metrics/${id}`,
-            data: { sleep, stress, energy, mood, diet }
+            data: this.state.metric
          })
          .then(response => {
             //  console.log(response)
@@ -48,10 +58,16 @@ class Edit extends Component {
     }
 
     render() {
-    return(
-        <div>
-        <InputForm />
-    </div>
+        const { metric } = this.state
+        if(!metric) return <h1>Loading...</h1>
+        return(
+            <div>
+                <InputForm
+                    metric={metric}
+                    onInputChange={this.handleChange}
+                    onFormSubmit={this.handleSubmit}
+                />
+            </div>
         )
     }
 }

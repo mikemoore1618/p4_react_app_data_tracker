@@ -41,8 +41,11 @@ class Create extends Component {
     render() {
         return (
             <div>
-            <InputForm />
- 
+                <InputForm
+                    metric={this.state}
+                    onInputChange={this.handleChange}
+                    onFormSubmit={this.handleSubmit}
+                />
             </div>
 
         )

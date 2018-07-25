@@ -8,7 +8,8 @@ import Metrics from './views/Metrics'
 import Metric from './views/Metric'
 import LogOut from './views/LogOut'
 import Create from './views/Create'
-import Edit from './views/Edit'
+import Edit from './views/Edit';
+import { Container } from 'semantic-ui-react';
 
 
 class App extends Component {
@@ -26,7 +27,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App container">
+      <Container>
         <Navbar currentUser={this.state.currentUser}/>
         <Switch>
 
@@ -73,7 +74,7 @@ class App extends Component {
           }} />
 
         </Switch>
-      </div>
+      </Container>
     );
   }
 }

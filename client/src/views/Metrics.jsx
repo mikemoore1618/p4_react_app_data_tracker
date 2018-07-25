@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, Brush, ReferenceDot } from 'recharts'
 import { formattedDate } from '../helpers'
 import Calendar from 'react-calendar/dist/entry.nostyle'
 // import Calendar from 'react-calendar';
@@ -10,9 +10,16 @@ import Calendar from 'react-calendar/dist/entry.nostyle'
 const apiClient = axios.create()
 
 class Metrics extends React.Component {
-    state = {
-        metrics:[]
-}
+  state = {
+    metrics: [],
+    filter: {
+      sleep: true,
+      stress: true,
+      mood: true,
+      energy: true,
+      diet: true
+    }
+  }
 
 componentDidMount() {
     apiClient({ method: 'get', url: '/api/metrics' }).then((apiResponse) => {
@@ -20,45 +27,44 @@ componentDidMount() {
     })
   }
 
-  handleInputCheck = () => {
-    // Get the checkbox
-    // If the checkbox is checked
-    this.setState({ showResults: true });
-    //show line of data
-    console.log("checked")
-  
-    //hide line of data
-    this.setState({ showResults: false });
-    }
-
-  
+  handleInputCheck = (event) => {
+    this.setState({
+      filter: {...this.state.filter, [event.target.name]: event.target.checked }
+    })
+  }
 
 render() {
   const formattedMetrics = this.state.metrics.map((m) => {
     return { ...m, createdAt: formattedDate(m.createdAt) }
   })
+  const { filter } = this.state
     return (
         <div>
-
-            <LineChart width={600} height={300} data={formattedMetrics}
+            
+            <LineChart animationEasing="ease-out" width={600} height={300} data={formattedMetrics}
             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+            <Legend />
               <XAxis dataKey="createdAt"/>
-              <YAxis dataKey=''/>
+              <YAxis />
               <Tooltip/>
-              <Legend />
-              <Line type="monotone" dataKey="sleep" stroke="#0000ff" dot={null}/>
-              <Line type="monotone" dataKey="stress" stroke="#ff0000" dot={null}/>
-              <Line type="monotone" dataKey="mood" stroke="#ffff00" dot={null}/>
-              <Line type="monotone" dataKey="energy" stroke="#008000" dot={null}/>
-              <Line type="monotone" dataKey="diet" stroke="#ffa500" dot={null}/>
+              {/* add content={()=>{}} to render custom content for legend... */}
+              
+              
+              {filter.sleep && <Line animationEasing="ease-in-out" legendType="circle" type="monotone" dataKey="sleep" stroke="#0000ff" dot={false}/>}
+              {filter.stress && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="stress" stroke="#ff0000" dot={false}/>}
+              {filter.mood && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="mood" stroke="#ffff00" dot={false}/>}
+              {filter.energy && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="energy" stroke="#008000" dot={false}/>}
+              {filter.diet && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="diet" stroke="#ffa500" dot={false}/>}
+
+              <Brush dataKey="createdAt"/>
             </LineChart>
 
             
-            <input type="checkbox" name="sleep" value="sleep" onClick={this.handleInputCheck}/>
-            <input type="checkbox" name="stress" value="stress" onClick={this.handleInputCheck}/>
-            <input type="checkbox" name="mood" value="mood" onClick={this.handleInputCheck}/>
-            <input type="checkbox" name="energy" value="energy" onClick={this.handleInputCheck}/>
-            <input type="checkbox" name="diet" value="diet" onClick={this.handleInputCheck}/>
+            <input type="checkbox" name="sleep" checked={filter.sleep} onChange={this.handleInputCheck}/>
+            <input type="checkbox" name="stress" checked={filter.stress} onChange={this.handleInputCheck}/>
+            <input type="checkbox" name="mood" checked={filter.mood} onChange={this.handleInputCheck}/>
+            <input type="checkbox" name="energy" checked={filter.energy} onChange={this.handleInputCheck}/>
+            <input type="checkbox" name="diet" checked={filter.diet} onChange={this.handleInputCheck}/>
 
 
             <ul>
@@ -71,6 +77,7 @@ render() {
             )
             })}
             </ul>
+            
             <Calendar/>
             
             </div>
