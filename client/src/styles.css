@@ -6,3 +6,11 @@
 .NavBar {
 	margin-bottom: 20px
 }
+
+.react-calendar  {
+	width: 500px !important;
+	margin: 0 auto;
+	width: 100px;
+
+  }
+

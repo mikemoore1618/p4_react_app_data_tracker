@@ -56,11 +56,11 @@ class Metric extends React.Component {
                 <YAxis/>
                 <Tooltip/>
                 <Legend />
-                <Bar dataKey="sleep" fill="#0000ff" />
-                <Bar dataKey="stress" fill="#ff0000" />
-                <Bar dataKey="mood" fill="#ffff00" />
-                <Bar dataKey="energy" fill="#008000" />
-                <Bar dataKey="diet" fill="#ffa500" />
+                <Bar dataKey="sleep" fill="#4198f4" />
+                <Bar dataKey="stress" fill="#f44242" />
+                <Bar dataKey="mood" fill="#f4dc41" />
+                <Bar dataKey="energy" fill="#41f47c" />
+                <Bar dataKey="diet" fill="#f49741" />
             </BarChart>
 
             <a href='#' onClick={this.deleteMetric}>Delete</a>

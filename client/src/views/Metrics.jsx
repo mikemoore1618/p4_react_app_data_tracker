@@ -3,14 +3,15 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, Brush, ReferenceDot } from 'recharts'
 import { formattedDate } from '../helpers'
-import Calendar from 'react-calendar/dist/entry.nostyle'
-// import Calendar from 'react-calendar';
+// import Calendar from 'react-calendar/dist/entry.nostyle'
+import Calendar from 'react-calendar';
 
 
 const apiClient = axios.create()
 
 class Metrics extends React.Component {
   state = {
+    calendarDate: null,
     metrics: [],
     filter: {
       sleep: true,
@@ -33,6 +34,11 @@ componentDidMount() {
     })
   }
 
+  handleDateClick = () => {
+    console.log("clicked")
+    console.log(this.datetime)
+  }
+
 render() {
   const formattedMetrics = this.state.metrics.map((m) => {
     return { ...m, createdAt: formattedDate(m.createdAt) }
@@ -50,11 +56,11 @@ render() {
               {/* add content={()=>{}} to render custom content for legend... */}
               
               
-              {filter.sleep && <Line animationEasing="ease-in-out" legendType="circle" type="monotone" dataKey="sleep" stroke="#0000ff" dot={false}/>}
-              {filter.stress && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="stress" stroke="#ff0000" dot={false}/>}
-              {filter.mood && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="mood" stroke="#ffff00" dot={false}/>}
-              {filter.energy && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="energy" stroke="#008000" dot={false}/>}
-              {filter.diet && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="diet" stroke="#ffa500" dot={false}/>}
+              {filter.sleep && <Line animationEasing="ease-in-out" legendType="circle" type="monotone" dataKey="sleep" stroke="#4198f4" dot={false}/>}
+              {filter.stress && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="stress" stroke="#f44242" dot={false}/>}
+              {filter.mood && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="mood" stroke="#f4dc41" dot={false}/>}
+              {filter.energy && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="energy" stroke="#41f47c" dot={false}/>}
+              {filter.diet && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="diet" stroke="#f49741" dot={false}/>}
 
               <Brush dataKey="createdAt"/>
             </LineChart>
@@ -77,8 +83,8 @@ render() {
             )
             })}
             </ul>
-            
-            <Calendar/>
+
+            <Calendar onClickDay={this.handleDateClick}/>
             
             </div>
         )
