@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-
+import Create from './views/Create'
 
 const NavBar = (props) => {
     return(
@@ -9,7 +9,9 @@ const NavBar = (props) => {
             ? (
                 <Fragment>
                     <Link to='/'>{props.currentUser.name}'s Data</Link>
-                    <Link to='/create'>Add</Link>
+                    <Link to='/'>
+                        <Create />
+                    </Link>
                     <Link to='/logout'>Log Out</Link>
                     
                     

@@ -42,7 +42,7 @@ class Create extends Component {
     render() {
         return (
             <div>
-                <Modal trigger={<a>Create Modal</a>}>
+                <Modal size='mini' trigger={<a>Add</a>}>
                 <Modal.Header>Add Data</Modal.Header>
                      <Modal.Content>
                         <Modal.Description>
