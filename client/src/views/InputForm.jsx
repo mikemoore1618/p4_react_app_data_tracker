@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { formattedDate } from '../helpers'
+// import { formattedDate } from '../helpers'
 
 
 class InputForm extends React.Component{
@@ -14,7 +14,7 @@ class InputForm extends React.Component{
     // }
 
     render() {
-        let { metric, sleep, stress, energy, mood, diet, createdAt } = this.props.metric
+        let { sleep, stress, energy, mood, diet, createdAt } = this.props.metric
         let { onInputChange } = this.props
         
     return(

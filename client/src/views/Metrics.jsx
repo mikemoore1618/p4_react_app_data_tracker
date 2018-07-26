@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, Brush, ReferenceDot } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, Brush } from 'recharts'
 import { formattedDate } from '../helpers'
 // import Calendar from 'react-calendar/dist/entry.nostyle'
 import Calendar from 'react-calendar';
@@ -34,9 +34,11 @@ componentDidMount() {
     })
   }
 
-  handleDateClick = () => {
+  handleDateClick = (event) => {
     console.log("clicked")
-    console.log(this.datetime)
+    this.setState({
+      // calendarDate: { ...this.state, [event.target.name]}
+    })
   }
 
 render() {

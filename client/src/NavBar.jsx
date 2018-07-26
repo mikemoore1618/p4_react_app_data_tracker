@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import FormModal from './views/Modal'
+
 
 const NavBar = (props) => {
     return(
@@ -10,7 +10,6 @@ const NavBar = (props) => {
                 <Fragment>
                     <Link to='/'>{props.currentUser.name}'s Data</Link>
                     <Link to='/create'>Add</Link>
-                    <Link to='/create'><FormModal /></Link>
                     <Link to='/logout'>Log Out</Link>
                     
                     

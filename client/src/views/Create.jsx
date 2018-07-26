@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { formattedDate } from '../helpers'
 import InputForm from './InputForm'
+import { Modal } from 'semantic-ui-react'
 
 const apiClient = axios.create()
 
@@ -41,11 +42,18 @@ class Create extends Component {
     render() {
         return (
             <div>
-                <InputForm
-                    metric={this.state}
-                    onInputChange={this.handleChange}
-                    onFormSubmit={this.handleSubmit}
-                />
+                <Modal trigger={<a>Create Modal</a>}>
+                <Modal.Header>Add Data</Modal.Header>
+                     <Modal.Content>
+                        <Modal.Description>
+                            <InputForm
+                                metric={this.state}
+                                onInputChange={this.handleChange}
+                                onFormSubmit={this.handleSubmit}
+                            />
+                        </Modal.Description>
+                    </Modal.Content>
+                </Modal>
             </div>
 
         )
