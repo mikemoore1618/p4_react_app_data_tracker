@@ -25,8 +25,8 @@ class Create extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        // console.log(event.target)
-        // console.log(this.state)
+        console.log(event.target)
+        console.log(this.state)
         // let { sleep, stress, energy, mood, diet } = this.state
         apiClient({ 
             method: 'post', 
@@ -34,7 +34,7 @@ class Create extends Component {
             data: { ...this.state, createdAt: (new Date(this.state.createdAt)).toGMTString() }
         })
             .then(response => {
-                // console.log(response)
+                console.log(response)
                 this.props.history.push('/metrics')
             })
     }

@@ -5,6 +5,9 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, Brush } from 'recharts'
 import { formattedDate } from '../helpers'
 // import Calendar from 'react-calendar/dist/entry.nostyle'
 import Calendar from 'react-calendar';
+// import Metric from './Metric'
+import MetricModal from './MetricModal';
+import { Modal, Button } from 'semantic-ui-react';
 
 
 const apiClient = axios.create()
@@ -19,8 +22,25 @@ class Metrics extends React.Component {
       mood: true,
       energy: true,
       diet: true
-    }
+    },
+    open: false,
+    metric: undefined
   }
+
+// MODAL ACTIONS
+
+loadMetric(id) {
+  apiClient({ method: 'get', url: `/api/metrics/${id}`}).then((apiResponse) => {
+    this.setState({ metric: apiResponse.data.payload })
+  })
+};
+
+showModal = (e) => { 
+  this.loadMetric(e.target.dataset.id)
+  this.setState({ open: true })
+};
+
+closeModal = () => this.setState({ open: false, metric: undefined });
 
 componentDidMount() {
     apiClient({ method: 'get', url: '/api/metrics' }).then((apiResponse) => {
@@ -45,7 +65,9 @@ render() {
   const formattedMetrics = this.state.metrics.map((m) => {
     return { ...m, createdAt: formattedDate(m.createdAt) }
   })
-  const { filter } = this.state
+
+  const { filter, open, metric } = this.state
+  
     return (
         <div>
             
@@ -58,11 +80,11 @@ render() {
               {/* add content={()=>{}} to render custom content for legend... */}
               
               
-              {filter.sleep && <Line animationEasing="ease-in-out" legendType="circle" type="monotone" dataKey="sleep" stroke="#4198f4" dot={false} strokeWidth={2.5}/>}
-              {filter.stress && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="stress" stroke="#f44242" dot={false} strokeWidth={2.5}/>}
-              {filter.mood && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="mood" stroke="#f4dc41" dot={false} strokeWidth={2.5}/>}
-              {filter.energy && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="energy" stroke="#41f47c" dot={false} strokeWidth={2.5}/>}
-              {filter.diet && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="diet" stroke="#f49741" dot={false} strokeWidth={2.5}/>}
+              {filter.sleep && <Line animationEasing="ease-in-out" legendType="circle" type="monotone" dataKey="sleep" stroke="#4198f4" dot={false} strokeWidth={5}/>}
+              {filter.stress && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="stress" stroke="#f44242" dot={false} strokeWidth={5}/>}
+              {filter.mood && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="mood" stroke="#f4dc41" dot={false} strokeWidth={5}/>}
+              {filter.energy && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="energy" stroke="#41f47c" dot={false} strokeWidth={5}/>}
+              {filter.diet && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="diet" stroke="#f49741" dot={false} strokeWidth={5}/>}
 
               <Brush dataKey="createdAt"/>
             </LineChart>
@@ -78,13 +100,14 @@ render() {
             <ul>
             {formattedMetrics.map((m) => {
             return (
-            <li key={m._id}>
-                    <Link to={`/metrics/${m._id}`}>
-                    {m.createdAt}</Link>
-            </li>
+              <li key={m._id}>
+                <button data-id={m._id} onClick={this.showModal}>{m.createdAt}</button>
+              </li>
             )
             })}
             </ul>
+
+            <MetricModal open={open} onClose={this.closeModal} metric={metric} />
 
             <Calendar onClickDay={this.handleDateClick}/>
             
