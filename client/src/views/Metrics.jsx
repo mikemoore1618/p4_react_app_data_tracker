@@ -60,9 +60,11 @@ componentDidMount() {
 // FORM CHANGE
 
 //change evt to id?
-  handleChange = (evt) => {
-    evt.preventDefault();
-    let metric = Object.assign({}, this.state.metric, { [evt.target.name]: evt.target.value });
+  handleChange = (id) => {
+    console.log(this.state.metrics)
+    // evt.preventDefault();
+    // let metric = Object.assign({}, this.state.metric, { [evt.target.name]: evt.target.value });
+    let metric = Object.assign({}, this.state.metrics, { [id]: this.state.metrics.id });
     this.setState({ metric });
   }
 
@@ -112,7 +114,7 @@ componentDidMount() {
       open: true
     })
 
-    console.log(metricsOnThisDay)
+    // console.log(metricsOnThisDay)
 
     // let calendarDate = document.getElementsByClassName(react-calendar__tile--active)
     
