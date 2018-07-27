@@ -8,7 +8,7 @@ metricsRouter.use(verifyToken)
 metricsRouter.get('/', metricsCtrl.index)
 metricsRouter.get('/:id', metricsCtrl.show)
 
-metricsRouter.use(verifyToken)
+// metricsRouter.use(verifyToken)
 metricsRouter.post('/', metricsCtrl.create)
 metricsRouter.patch('/:id', metricsCtrl.update)
 metricsRouter.delete('/:id', metricsCtrl.destroy)

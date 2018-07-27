@@ -5,7 +5,8 @@ const
 module.exports = {
 	// show all metrics
 	index: (req, res) => {
-		Metric.find({}, (err, metrics) => {
+		Metric.find({_by: req.user._id}, (err, metrics) => {
+			console.log(metrics)
 			if(err) return res.json({message: "ERROR", payload: null, code: err.code})
 			res.json({ message: "SUCCESS", payload: metrics})
 		})

@@ -7,14 +7,12 @@ const NavBar = (props) => {
         <div className='NavBar'>
         {props.currentUser
             ? (
-                <Fragment>
+                <Fragment className='float-right'>
                     <Link to='/'>{props.currentUser.name}'s Data</Link>
-                    <Link to='/'>
-                        <Create />
-                    </Link>
                     <Link to='/logout'>Log Out</Link>
-                    
-                    
+                    <button>
+                        <Create />
+                    </button>
                 </Fragment>
             )
             : (

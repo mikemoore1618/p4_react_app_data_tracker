@@ -6,6 +6,7 @@ import Calendar from 'react-calendar'
 import MetricModal from './MetricModal'
 
 
+
 const apiClient = axios.create()
 
 class Metrics extends React.Component {
@@ -126,6 +127,8 @@ componentDidMount() {
   }
 
 render() {
+  // console.log(this.state.metrics)
+
   const formattedMetrics = this.state.metrics.map((m) => {
     return { ...m, createdAt: formattedDate(m.createdAt) }
   })
@@ -134,7 +137,8 @@ render() {
   
     return (
         <div>
-            
+
+          
             <LineChart className='center' animationEasing="ease-out" width={600} height={300} data={formattedMetrics}
             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
             <Legend />
@@ -179,9 +183,9 @@ render() {
               handleDelete={this.handleDelete}
               selectedDate={selectedDate}
               metrics={metrics.filter((m) => formattedDate(m.createdAt) === selectedDate)} />
-
+            <div className='center'>
             <Calendar onClickDay={this.handleDateClick}/>
-            
+            </div>
             </div>
         )
     }
