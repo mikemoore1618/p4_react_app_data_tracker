@@ -29,9 +29,9 @@ module.exports = {
 
 	// update an existing metric
 	update: (req, res) => {
-        Metric.findByIdAndUpdate(req.params.id, req.body, (err, updateMetric) => {
+        Metric.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedMetric) => {
         	if(err) return res.json({message: "ERROR", payload: null, code: err.code})
-        	res.json({ message: "SUCCESS", payload: updateMetric })
+        	res.json({ message: "SUCCESS", payload: updatedMetric })
         })
     },
 

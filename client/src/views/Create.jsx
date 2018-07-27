@@ -1,55 +1,61 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import httpClient from '../httpClient'
 import { formattedDate } from '../helpers'
 import InputForm from './InputForm'
 import { Modal } from 'semantic-ui-react'
 
-const apiClient = axios.create()
-
 class Create extends Component {
     state = {
-        sleep:'',
-        stress:'',
-        energy: '',
-        mood: '',
-        diet: '',
-        createdAt: formattedDate(new Date(), 'YYYY-MM-DD')
+        metric: {
+            sleep:'',
+            stress:'',
+            energy: '',
+            mood: '',
+            diet: '',
+            createdAt: formattedDate(new Date(), 'YYYY-MM-DD'),
+        },
+        open: false
     }
+    
+    openModal = () => this.setState({ open: true });
+    closeModal = () => this.setState({ open: false });
 
     handleChange = (event) => {
         event.preventDefault()
-
         // console.log(event.target.name, event.target.value)
-        this.setState({ [event.target.name]:event.target.value })
+        this.setState({ metric: { ...this.state.metric, [event.target.name]:event.target.value } })
     }
 
     handleSubmit = (event) => {
+        const { metric } = this.state
         event.preventDefault()
-        console.log(event.target)
-        console.log(this.state)
-        // let { sleep, stress, energy, mood, diet } = this.state
-        apiClient({ 
+        httpClient({ 
             method: 'post', 
             url: '/api/metrics',
-            data: { ...this.state, createdAt: (new Date(this.state.createdAt)).toGMTString() }
+            data: { ...metric, createdAt: (new Date(metric.createdAt)) }  // .toGMTString()?
+        }).then(apiResponse => {
+            console.log("Metric created???")
+            this.closeModal()
         })
-            .then(response => {
-                console.log(response)
-                this.props.history.push('/metrics')
-            })
+        //add to list without refreshing page (this.state.metrics array?)
+            
     }
 
     render() {
+
         return (
             <div>
-                <Modal size='mini' trigger={<a>Add</a>}>
+                <a onClick={this.openModal}>Add</a>
+                <Modal size='mini' open={this.state.open} onClose={this.closeModal}>
                 <Modal.Header>Add Data</Modal.Header>
                      <Modal.Content>
                         <Modal.Description>
                             <InputForm
-                                metric={this.state}
-                                onInputChange={this.handleChange}
-                                onFormSubmit={this.handleSubmit}
+                                open={this.state.open} 
+                                metric={this.state.metric}
+                                handleChange={this.handleChange}
+                                handleSubmit={this.handleSubmit}
+                                closeModal={this.closeModal}
                             />
                         </Modal.Description>
                     </Modal.Content>

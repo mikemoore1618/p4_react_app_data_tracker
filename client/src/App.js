@@ -5,7 +5,6 @@ import Navbar from './NavBar'
 import SignUp from './views/SignUp'
 import LogIn from './views/LogIn'
 import Metrics from './views/Metrics'
-import Metric from './views/Metric'
 import LogOut from './views/LogOut'
 import Create from './views/Create'
 import Edit from './views/Edit';
@@ -59,7 +58,7 @@ class App extends Component {
 
           <Route exact path='/metrics/:id' render={(routeProps) => {
             return this.state.currentUser
-            ? <Metric {...routeProps}/>
+            ? <Metrics {...routeProps}/>
             : <Redirect to="/login" />
           }} />
 
