@@ -24,11 +24,38 @@
   .check {
 		margin-right: 7px;
 		margin-bottom: 20px;
-
   }
+
 
   .float-right{
 	  float: right;
+  }
+
+  .circle {
+	  height: 12px;
+	  width: 12px;
+	  border-radius: 12px;
+	  display: inline-block;
+  }
+
+  #sleep {
+	  background-color:#4198f4;
+  }
+  
+  #stress {
+	  background-color:#f44242;
+  }
+  
+  #mood {
+	  background-color:#f4dc41;
+  }
+
+  #energy {
+	  background-color:#41f47c;
+  }
+
+  #diet {
+	  background-color:#f49741;
   }
   
 

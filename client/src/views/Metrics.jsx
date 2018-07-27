@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, Brush } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend,  Brush } from 'recharts'
 import { formattedDate } from '../helpers'
 import Calendar from 'react-calendar'
 import MetricModal from './MetricModal'
@@ -21,7 +21,6 @@ class Metrics extends React.Component {
     },
     selectedDate: null,
     open: false,
-    metric: undefined,
     calendarDate: null
   }
 
@@ -60,20 +59,22 @@ componentDidMount() {
 
 // FORM CHANGE
 
-//change evt to id?
-  handleChange = (id) => {
-    console.log(this.state.metrics)
-    // evt.preventDefault();
-    // let metric = Object.assign({}, this.state.metric, { [evt.target.name]: evt.target.value });
-    let metric = Object.assign({}, this.state.metrics, { [id]: this.state.metrics.id });
-    this.setState({ metric });
+//change evt to id?????
+  handleChange = (e) => {
+    e.preventDefault();
+    let { id } = e.target.dataset;
+    const index = this.state.metrics.findIndex(m => m._id === id);
+    let updatedMetric = Object.assign({}, this.state.metrics[index], { [e.target.name]: e.target.value });
+    let metrics = Array.from(this.state.metrics);
+    metrics.splice(index, 1, updatedMetric);
+    this.setState({ metrics });
   }
 
 // EDIT FORM SUBMIT
 
 //change evt to id?
-  handleSubmit = (evt) => {
-    evt.preventDefault()
+  handleSubmit = (id) => {
+    // evt.preventDefault()
     // console.log(this.state.metric)
     let { _id } = this.state.metric
         apiClient({ 
@@ -83,17 +84,11 @@ componentDidMount() {
          })
          .then(apiResponse => {
           console.log(apiResponse)
-          const updatedMetric = apiResponse.data.payload
-          const updatedMetricIndex = this.state.metrics.findIndex((m) => m._id === updatedMetric._id)
-          this.setState({
-            metrics: [
-              ...this.state.metrics.slice(0, updatedMetricIndex),
-              updatedMetric,
-              ...this.state.metrics.slice(updatedMetricIndex + 1)
-            ]
+          const metrics = apiResponse.data.payload
+          
+          this.setState({ metrics });
           })
           this.closeModal()
-      })
   }
 
 // CHECKBOX
@@ -114,16 +109,6 @@ componentDidMount() {
       selectedDate: dateClicked,
       open: true
     })
-
-    // console.log(metricsOnThisDay)
-
-    // let calendarDate = document.getElementsByClassName(react-calendar__tile--active)
-    
-      // // if (calendarDate === createdAt) {
-      //   this.setState({ calendarDate: { ...this.state, [event.target.name]} })
-      
-      // // calendarDate: { ...this.state, [event.target.name]}
-    
   }
 
 render() {
@@ -137,31 +122,33 @@ render() {
   
     return (
         <div>
-
-          
             <LineChart className='center' animationEasing="ease-out" width={600} height={300} data={formattedMetrics}
             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-            <Legend />
+            {/* <Legend /> */}
               <XAxis dataKey="createdAt"/>
               <YAxis />
               <Tooltip/>
-              {/* add content={()=>{}} to render custom content for legend... */}
-              
-              
-              {filter.sleep && <Line animationEasing="ease-in-out" legendType="circle" type="monotone" dataKey="sleep" stroke="#4198f4" dot={false} strokeWidth={3}/>}
-              {filter.stress && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="stress" stroke="#f44242" dot={false} strokeWidth={3}/>}
-              {filter.mood && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="mood" stroke="#f4dc41" dot={false} strokeWidth={3}/>}
-              {filter.energy && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="energy" stroke="#41f47c" dot={false} strokeWidth={3}/>}
-              {filter.diet && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="diet" stroke="#f49741" dot={false} strokeWidth={3}/>}
+              <Legend />
+                           
+              {filter.sleep && <Line animationEasing="ease-in-out" legendType="circle" type="monotone" dataKey="sleep" stroke="#4198f4" dot={false} strokeWidth={2}/>}              
+              {filter.stress && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="stress" stroke="#f44242" dot={false} strokeWidth={2}/>}             
+              {filter.mood && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="mood" stroke="#f4dc41" dot={false} strokeWidth={2}/>}              
+              {filter.energy && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="energy" stroke="#41f47c" dot={false} strokeWidth={2}/>}
+              {filter.diet && <Line animationEasing="ease-in-out"legendType='circle' type="monotone" dataKey="diet" stroke="#f49741" dot={false} strokeWidth={2}/>}
 
               <Brush dataKey="createdAt"/>
             </LineChart>
 
             <div className='center'>
+              {/* <div className="circle" id='sleep'></div><a>sleep</a> */}
               <input className='check' type="checkbox" name="sleep" checked={filter.sleep} onChange={this.handleInputCheck}/>
+              {/* <div className="circle" id='stress'></div><a>stress</a> */}
               <input className='check' type="checkbox" name="stress" checked={filter.stress} onChange={this.handleInputCheck}/>
+              {/* <div className="circle" id='mood'></div><a>mood</a> */}
               <input className='check' type="checkbox" name="mood" checked={filter.mood} onChange={this.handleInputCheck}/>
+              {/* <div className="circle" id='energy'></div><a>energy</a> */}
               <input className='check' type="checkbox" name="energy" checked={filter.energy} onChange={this.handleInputCheck}/>
+              {/* <div className="circle" id='diet'></div><a>diet</a> */}
               <input className='check' type="checkbox" name="diet" checked={filter.diet} onChange={this.handleInputCheck}/>
             </div>
 

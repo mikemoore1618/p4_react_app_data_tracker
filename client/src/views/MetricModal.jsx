@@ -40,7 +40,7 @@ const MetricModal = (props) => {
                                         <Modal.Content>
                                             <Modal.Description>
                                                 <InputForm
-                                                    metric={m._id}
+                                                    metric={m}
                                                     handleSubmit={handleSubmit}
                                                     handleChange={handleChange}
                                                 />
