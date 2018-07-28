@@ -30,9 +30,22 @@ module.exports = {
 
 	// update an existing metric
 	update: (req, res) => {
+        // Metric.findById(req.params.id, (err, metric) => {
+		// 	Object.assign(metric, req.body)
+		// 	metric.save((err, updatedMetric) => {
+		// 		if(err) return res.json({message: "ERROR", payload: null, code: err.code})
+		// 		Metric.find({_by: req.user._id}, (err, metrics) => {
+		// 			res.json({ message: "SUCCESS", payload: metrics})
+		// 		})
+		// 	})
+        // })
         Metric.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedMetric) => {
-        	if(err) return res.json({message: "ERROR", payload: null, code: err.code})
-        	res.json({ message: "SUCCESS", payload: updatedMetric })
+			console.log(req.body)
+			if(err) return res.json({message: "ERROR", payload: null, code: err.code})
+			Metric.find({_by: req.user._id}, (err, metrics) => {
+				res.json({ message: "SUCCESS", payload: metrics})
+			})
+			
         })
     },
 
@@ -42,6 +55,6 @@ module.exports = {
 			if(err) return res.json({message: "ERROR", err})
 			res.json({ message: "SUCCESS", payload: deletedMetric })
 		})
-	},
+	}
 }
 

@@ -21,7 +21,9 @@ class Metrics extends React.Component {
     },
     selectedDate: null,
     open: false,
-    calendarDate: null
+    calendarDate: null,
+    // used for editing:
+    metricBeingEdited: null
   }
 
 // MODAL ACTIONS
@@ -57,17 +59,33 @@ componentDidMount() {
     })
   }
 
+  onEditMetric = (id) => {
+    // whenever edit button is clicked, we copy the metric we're trying to edit
+    // from metrics list into "metricBeingEdited" to help the form inputs
+    const metricToEdit = this.state.metrics.find(m => m._id === id)
+    this.setState({
+      metricBeingEdited: { ...metricToEdit, createdAt: formattedDate(metricToEdit.createdAt, 'YYYY-MM-DD') }
+    })
+  }
+
 // FORM CHANGE
 
 //change evt to id?????
   handleChange = (e) => {
     e.preventDefault();
-    let { id } = e.target.dataset;
-    const index = this.state.metrics.findIndex(m => m._id === id);
-    let updatedMetric = Object.assign({}, this.state.metrics[index], { [e.target.name]: e.target.value });
-    let metrics = Array.from(this.state.metrics);
-    metrics.splice(index, 1, updatedMetric);
-    this.setState({ metrics });
+    this.setState({
+      metricBeingEdited: {
+        ...this.state.metricBeingEdited,
+        [e.target.name]: e.target.value
+      }
+    })
+    // let { id } = e.target.dataset;
+    // console.log(id)
+    // const index = this.state.metrics.findIndex(m => m._id === id);
+    // let updatedMetric = Object.assign({}, this.state.metrics[index], { [e.target.name]: e.target.value });
+    // let metrics = Array.from(this.state.metrics);
+    // metrics.splice(index, 1, updatedMetric);
+    // this.setState({ metrics });
   }
 
 // EDIT FORM SUBMIT
@@ -76,11 +94,11 @@ componentDidMount() {
   handleSubmit = (id) => {
     // evt.preventDefault()
     // console.log(this.state.metric)
-    let { _id } = this.state.metric
+    // let { _id } = this.state.metric
         apiClient({ 
             method: 'patch', 
-            url: `/api/metrics/${_id}`,
-            data: this.state.metric
+            url: `/api/metrics/${id}`,
+            data: this.state.metricBeingEdited
          })
          .then(apiResponse => {
           console.log(apiResponse)
@@ -152,23 +170,25 @@ render() {
               <input className='check' type="checkbox" name="diet" checked={filter.diet} onChange={this.handleInputCheck}/>
             </div>
 
-            {/* <ul>
+            <ul>
             {formattedMetrics.map((m) => {
             return (
               <li key={m._id}>
-                <button data-id={m._id} onClick={this.showModal}>{m.createdAt}</button>
+                <button>{m.createdAt}</button>
               </li>
             )
             })}
-            </ul> */}
+            </ul>
 
             <MetricModal 
               open={open} 
               onClose={this.closeModal} 
+              handleEditClick={this.onEditMetric}
               handleChange={this.handleChange} 
               handleSubmit={this.handleSubmit}
               handleDelete={this.handleDelete}
               selectedDate={selectedDate}
+              metricBeingEdited={this.state.metricBeingEdited}
               metrics={metrics.filter((m) => formattedDate(m.createdAt) === selectedDate)} />
             <div className='center'>
             <Calendar onClickDay={this.handleDateClick}/>

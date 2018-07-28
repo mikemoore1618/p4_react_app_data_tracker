@@ -2,12 +2,14 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import Create from './views/Create'
 
+
+// float-right
 const NavBar = (props) => {
     return(
         <div className='NavBar'>
         {props.currentUser
             ? (
-                <Fragment className='float-right'>
+                <Fragment>
                     <Link to='/'>{props.currentUser.name}'s Data</Link>
                     <Link to='/logout'>Log Out</Link>
                     <button>

@@ -28,7 +28,7 @@ class Create extends Component {
 
     handleSubmit = (event) => {
         const { metric } = this.state
-        event.preventDefault()
+        // event.preventDefault()
         httpClient({ 
             method: 'post', 
             url: '/api/metrics',

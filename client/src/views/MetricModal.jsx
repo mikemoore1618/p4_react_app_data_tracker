@@ -6,9 +6,17 @@ import InputForm from './InputForm'
 
 
 const MetricModal = (props) => {
-
-
-    let { open, onClose, metrics, handleChange, handleSubmit, handleDelete, selectedDate } = props;
+    let {
+        open,
+        onClose,
+        metrics,
+        handleEditClick,
+        handleChange,
+        handleSubmit,
+        handleDelete,
+        selectedDate,
+        metricBeingEdited
+    } = props;
     return (
         
         <div>
@@ -35,12 +43,14 @@ const MetricModal = (props) => {
 
                                     <button onClick={() => { handleDelete(m._id) }}>Delete</button>
 
-                                    <Modal size="mini" trigger={<button>Edit</button>}>
+                                    <Modal size="mini" trigger={
+                                        <button onClick={() => handleEditClick(m._id)}>Edit</button>
+                                    }>
                                         <Modal.Header>Edit { formattedDate(m.createdAt) }</Modal.Header>
                                         <Modal.Content>
                                             <Modal.Description>
                                                 <InputForm
-                                                    metric={m}
+                                                    metric={metricBeingEdited}
                                                     handleSubmit={handleSubmit}
                                                     handleChange={handleChange}
                                                 />
