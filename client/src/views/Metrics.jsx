@@ -139,8 +139,8 @@ render() {
   const { filter, open, metrics, selectedDate } = this.state
   
     return (
-        <div>
-            <LineChart className='center' animationEasing="ease-out" width={600} height={300} data={formattedMetrics}
+      <div>
+            <LineChart animationEasing="ease-out" width={600} height={300} data={formattedMetrics}
             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
             {/* <Legend /> */}
               <XAxis dataKey="createdAt"/>
@@ -157,9 +157,8 @@ render() {
               <Brush dataKey="createdAt"/>
             </LineChart>
 
-            <div className='center'>
               {/* <div className="circle" id='sleep'></div><a>sleep</a> */}
-              <input className='check' type="checkbox" name="sleep" checked={filter.sleep} onChange={this.handleInputCheck}/>
+              <input className='check left-check' type="checkbox" name="sleep" checked={filter.sleep} onChange={this.handleInputCheck}/>
               {/* <div className="circle" id='stress'></div><a>stress</a> */}
               <input className='check' type="checkbox" name="stress" checked={filter.stress} onChange={this.handleInputCheck}/>
               {/* <div className="circle" id='mood'></div><a>mood</a> */}
@@ -168,9 +167,10 @@ render() {
               <input className='check' type="checkbox" name="energy" checked={filter.energy} onChange={this.handleInputCheck}/>
               {/* <div className="circle" id='diet'></div><a>diet</a> */}
               <input className='check' type="checkbox" name="diet" checked={filter.diet} onChange={this.handleInputCheck}/>
-            </div>
+            
+          
 
-            <ul>
+            {/* <ul>
             {formattedMetrics.map((m) => {
             return (
               <li key={m._id}>
@@ -178,8 +178,8 @@ render() {
               </li>
             )
             })}
-            </ul>
-
+            </ul> */}
+            
             <MetricModal 
               open={open} 
               onClose={this.closeModal} 
@@ -190,10 +190,11 @@ render() {
               selectedDate={selectedDate}
               metricBeingEdited={this.state.metricBeingEdited}
               metrics={metrics.filter((m) => formattedDate(m.createdAt) === selectedDate)} />
-            <div className='center'>
+           
             <Calendar onClickDay={this.handleDateClick}/>
-            </div>
-            </div>
+            
+      </div>
+           
         )
     }
 }

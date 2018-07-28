@@ -8,22 +8,27 @@
 }
 
 .react-calendar  {
-	width: 500px !important;
-	margin: 0 auto;
-	width: 100px;
+	min-width: 500px !important;
+	/* margin: 0 auto; */
+  /* width: 100px; */
+  margin-left:80px;
 	margin-bottom: 30px;
 
   }
 
   .center {
 	margin: auto;
-    width: 50%;
+    width: 20%;
 
   }
 
   .check {
-		margin-right: 7px;
+		margin-right: 25px;
 		margin-bottom: 20px;
+  }
+ 
+  .left-check {
+    margin-left: 200px
   }
 
 

@@ -11,10 +11,15 @@ const NavBar = (props) => {
             ? (
                 <Fragment>
                     <Link to='/'>{props.currentUser.name}'s Data</Link>
-                    <Link to='/logout'>Log Out</Link>
+                    
                     <button>
                         <Create />
                     </button>
+
+                    <Link to='/logout'>
+                        <button className='float-right'>Log Out</button>
+                    </Link>
+                    
                 </Fragment>
             )
             : (
