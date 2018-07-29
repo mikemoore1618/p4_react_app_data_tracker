@@ -9,9 +9,11 @@ class Create extends Component {
         metric: {
             sleep: '',
             stress: '',
-            energy: '',
             mood: '',
+            meditation: '',
+            energy: '',
             diet: '',
+            exersize: '',
             createdAt: formattedDate(new Date(), 'YYYY-MM-DD'),
         },
         open: false

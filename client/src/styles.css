@@ -3,9 +3,8 @@
 }
 
 .NavBar {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding: 5px 0;
-  /* background-color: rgb(11, 11, 45); */
 }
 
 h3 {
@@ -17,27 +16,26 @@ h3 {
   margin-left: 15px;
 }
 #logout-btn {
-  margin-top: 10px;
-
+  margin-top: 5px;
 }
 
 #line-graph-margin-left {
-  margin-left: -80px !important;
+  margin-left: -78px !important;
 }
 
 .react-calendar  {
 	min-width: 500px !important;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .center {
 	  margin: 0 auto;
     width: 50%;
-    text-align: center
+    
 }
 
 .check {
-		margin-right: 50px;
+		margin-right: 57px;
 		margin-bottom: 20px;
 }
  
@@ -60,6 +58,14 @@ h3 {
 #stress {
 	  background-color:#f44242;
 }
+
+#exersize {
+  background-color: #f552f5;
+}
+
+#meditation {
+  background-color: #774df5;
+}
   
 #mood {
 	  background-color:#f4dc41;
@@ -73,14 +79,24 @@ h3 {
 	  background-color:#f49741;
 }
 
-#legend a {
+.legend a {
     margin-right: 10px;
-    color: black;
+    color: #505050;
 }
 
-#legend {
+.legend {
     max-width: 500px;
     min-width: 500px;
+    text-align: center
+}
+
+#legend-margin {
+  margin-top: 8px;
+}
+
+#metric-legend {
+  margin-bottom: 20px;
+
 }
 
 .modal-btn {
@@ -92,4 +108,8 @@ h3 {
   min-width: 670px !important;
 }
 
+h5 {
+  color: #4183c4;
+  padding-bottom: 20px;
+}
 

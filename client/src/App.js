@@ -11,6 +11,7 @@ import Edit from './views/Edit';
 import { Container } from 'semantic-ui-react';
 
 
+
 class App extends Component {
   state = {
     currentUser: httpClient.getCurrentUser()
@@ -73,6 +74,7 @@ class App extends Component {
           }} />
 
         </Switch>
+        
       </Container>
     );
   }

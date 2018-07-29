@@ -25,8 +25,12 @@ const NavBar = (props) => {
                 )
                 : (
                     <Fragment>
-                        <Link to='/login'>Log In</Link>
-                        <Link to='/signup'>Sign Up</Link>
+                        <Link to='/login'>
+                            <Button>Log In</Button>
+                        </Link>
+                        <Link to='/signup'>
+                            <Button>Sign Up</Button>
+                        </Link>
                     </Fragment>
                 )
             }

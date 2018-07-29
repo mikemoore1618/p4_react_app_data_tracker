@@ -1,5 +1,6 @@
 import React from 'react'
 import httpClient from '../httpClient'
+import { Button } from 'semantic-ui-react'
 
 class SignUp extends React.Component {
 
@@ -40,9 +41,15 @@ class SignUp extends React.Component {
               onSubmit={this.onFormSubmit.bind(this)}
             >
               <input type="text" placeholder="Name" name="name" autoComplete="off" value={name}/>
+              <br/>
+              <br/>
               <input type="text" placeholder="Email" name="email" autoComplete="off" value={email}/>
+              <br/>
+              <br/>
               <input type="password" placeholder="Password" name="password" autoComplete="off" value={password}/>
-              <button>Sign Up</button>
+              <br/>
+              <br/>
+              <Button>Submit</Button>
             </form>
           </div>
         </div>

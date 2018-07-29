@@ -3,10 +3,11 @@ const mongoose = require('mongoose')
 const metricSchema = new mongoose.Schema({
     sleep: Number,
     stress: Number,
-    energy: Number,
     mood: Number,
+    meditation: Number,
+    energy: Number,
     diet: Number,
-    // createdAt: { type: Date, default: Date.now },
+    exersize: Number,
     createdAt: Date,
     _by: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 })

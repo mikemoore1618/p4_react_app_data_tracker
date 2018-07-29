@@ -16,8 +16,10 @@ class Metrics extends React.Component {
       sleep: true,
       stress: true,
       mood: true,
+      meditation: true,
       energy: true,
-      diet: true
+      diet: true,
+      exersize: true
     },
     selectedDate: null,
     open: false,
@@ -151,25 +153,37 @@ class Metrics extends React.Component {
           {filter.sleep && <Line animationEasing="ease-in-out" legendType="circle" type="monotone" dataKey="sleep" stroke="#4198f4" dot={false} strokeWidth={2} />}
           {filter.stress && <Line animationEasing="ease-in-out" legendType='circle' type="monotone" dataKey="stress" stroke="#f44242" dot={false} strokeWidth={2} />}
           {filter.mood && <Line animationEasing="ease-in-out" legendType='circle' type="monotone" dataKey="mood" stroke="#f4dc41" dot={false} strokeWidth={2} />}
+          {filter.meditation && <Line animationEasing="ease-in-out" legendType='circle' type="monotone" dataKey="meditation" stroke="#774df5" dot={false} strokeWidth={2} />}
           {filter.energy && <Line animationEasing="ease-in-out" legendType='circle' type="monotone" dataKey="energy" stroke="#41f47c" dot={false} strokeWidth={2} />}
           {filter.diet && <Line animationEasing="ease-in-out" legendType='circle' type="monotone" dataKey="diet" stroke="#f49741" dot={false} strokeWidth={2} />}
+          {filter.exersize && <Line animationEasing="ease-in-out" legendType='circle' type="monotone" dataKey="exersize" stroke="#f552f5" dot={false} strokeWidth={2} />}
 
           <Brush dataKey="createdAt" />
         </LineChart>
         </div>
-        <div id='legend'>
+        <div id="legend-margin" className='legend'>
           <div className="circle" id='sleep'></div> <a>Sleep</a>
           <div className="circle" id='stress'></div>  <a>Stress</a>
           <div className="circle" id='mood'></div>  <a>Mood</a>
+          <div className="circle" id='meditation'></div>  <a>Meditation</a>
           <div className="circle" id='energy'></div>  <a>Energy</a>
           <div className="circle" id='diet'></div>  <a>Diet</a>
-
+          <div className="circle" id='exersize'></div>  <a>Exersize</a>
+          
           <br />
-          <input className='check left-check' type="checkbox" name="sleep" checked={filter.sleep} onChange={this.handleInputCheck} />
+          <input className='check' type="checkbox" name="sleep" checked={filter.sleep} onChange={this.handleInputCheck} />
+
           <input className='check' type="checkbox" name="stress" checked={filter.stress} onChange={this.handleInputCheck} />
+
           <input className='check' type="checkbox" name="mood" checked={filter.mood} onChange={this.handleInputCheck} />
+
+          <input className='check' type="checkbox" name="meditation" checked={filter.meditation} onChange={this.handleInputCheck} />
+
           <input className='check' type="checkbox" name="energy" checked={filter.energy} onChange={this.handleInputCheck} />
-          <input type="checkbox" name="diet" checked={filter.diet} onChange={this.handleInputCheck} />
+
+          <input className='check' type="checkbox" name="diet" checked={filter.diet} onChange={this.handleInputCheck} />
+
+          <input type="checkbox" name="exersize" checked={filter.exersize} onChange={this.handleInputCheck} />
         </div>
 
 
@@ -195,7 +209,8 @@ class Metrics extends React.Component {
           metrics={metrics.filter((m) => formattedDate(m.createdAt) === selectedDate)} />
 
         <Calendar onClickDay={this.handleDateClick} />
-
+        <h5 className='legend'>Mike Moore 2018 </h5>
+        
       </div>
 
     )

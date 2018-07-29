@@ -27,7 +27,6 @@ const MetricModal = (props) => {
                             {metrics.map((m) => {
                                 return (
                                     <Fragment key={m._id}>
-                                    
                                         <BarChart classname='center' width={600} height={300} data={[m]}
                                             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                                             <XAxis dataKey="name" />
@@ -36,15 +35,19 @@ const MetricModal = (props) => {
                                             <Bar dataKey="sleep" fill="#4198f4" legendType="circle" />
                                             <Bar dataKey="stress" fill="#f44242" legendType="circle" />
                                             <Bar dataKey="mood" fill="#f4dc41" legendType="circle" />
+                                            <Bar dataKey="meditation" fill="#774df5" legendType="circle" />
                                             <Bar dataKey="energy" fill="#41f47c" legendType="circle" />
                                             <Bar dataKey="diet" fill="#f49741" legendType="circle" />
+                                            <Bar dataKey="exersize" fill="#f552f5" legendType="circle" />
                                         </BarChart>
-                                        <div id='legend' classname='center'>
+                                        <div id='metric-legend' className='center legend'>
                                             <div className="circle" id='sleep'></div> <a>Sleep</a>
                                             <div className="circle" id='stress'></div>  <a>Stress</a>
                                             <div className="circle" id='mood'></div>  <a>Mood</a>
+                                            <div className="circle" id='meditation'></div>  <a>Meditation</a>
                                             <div className="circle" id='energy'></div>  <a>Energy</a>
                                             <div className="circle" id='diet'></div>  <a>Diet</a>
+                                            <div className="circle" id='exersize'></div>  <a>Exersize</a>
                                         </div>
 
                                         <Modal size="mini" trigger={

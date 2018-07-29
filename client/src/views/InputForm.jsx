@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'semantic-ui-react'
 
 
 class InputForm extends React.Component {
@@ -11,7 +12,7 @@ class InputForm extends React.Component {
     }
 
     render() {
-        let { sleep, stress, energy, mood, diet, createdAt, _id } = this.props.metric
+        let { sleep, stress, energy, mood, diet, meditation, exersize, createdAt, _id } = this.props.metric
         console.log(this.props.metric)
         let { handleSubmit, handleChange } = this.props;
         return (
@@ -22,38 +23,59 @@ class InputForm extends React.Component {
                     <label >
                         Sleep: {sleep}
                         <br />
-                        <input type="range" min='1' max='100' name="sleep" data-id={_id} onChange={handleChange} value={sleep} />
+                        <input type="range" min='1' max='10' name="sleep" step="0.1" data-id={_id} onChange={handleChange} value={sleep} />
                     </label>
                     <br />
                     <br />
+
                     <label >
-                        Stress:{stress}
+                        Stress: {stress}
                         <br />
-                        <input type="range" min='1' max='100' name="stress" data-id={_id} onChange={handleChange} value={stress} />
+                        <input type="range" min='1' max='10' name="stress" step="0.1" data-id={_id} onChange={handleChange} value={stress} />
                     </label>
                     <br />
                     <br />
+
                     <label >
-                        Energy:{energy}
+                        Mood: {mood}
                         <br />
-                        <input type="range" min='1' max='100' name="energy" data-id={_id} onChange={handleChange} value={energy} />
+                        <input type="range" min='1' max='10' name="mood" step="0.1" data-id={_id} onChange={handleChange} value={mood} />
                     </label>
                     <br />
                     <br />
+
                     <label >
-                        Mood:{mood}
+                        Meditation: {meditation}
                         <br />
-                        <input type="range" min='1' max='100' name="mood" data-id={_id} onChange={handleChange} value={mood} />
+                        <input type="range" min='1' max='10' name="meditation" step="0.1" data-id={_id} onChange={handleChange} value={meditation} />
                     </label>
                     <br />
                     <br />
+
                     <label >
-                        Diet:{diet}
+                        Energy: {energy}
                         <br />
-                        <input type="range" min='1' max='100' name="diet" data-id={_id} onChange={handleChange} value={diet} />
+                        <input type="range" min='1' max='10' name="energy" step="0.1" data-id={_id} onChange={handleChange} value={energy} />
                     </label>
                     <br />
                     <br />
+                    
+                    <label >
+                        Diet: {diet}
+                        <br />
+                        <input type="range" min='1' max='10' name="diet" step="0.1" data-id={_id} onChange={handleChange} value={diet} />
+                    </label>
+                    <br />
+                    <br />
+
+                    <label >
+                        Exersize: {exersize}
+                        <br />
+                        <input type="range" min='1' max='10' name="exersize" step="0.1" data-id={_id} onChange={handleChange} value={exersize} />
+                    </label>
+                    <br />
+                    <br />
+
                     <label >
                         Date:
                         <br />
@@ -61,7 +83,7 @@ class InputForm extends React.Component {
                     </label>
                     <br />
                     <br />
-                    <input type="submit" value="Submit" />
+                    <Button type="submit" value="Submit">Submit</Button>
                 </form>
 
             </div>
