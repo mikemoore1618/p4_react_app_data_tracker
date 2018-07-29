@@ -1,24 +1,34 @@
 .NavBar a, .NavBar button {
-	margin: 0 5px;
-	cursor: pointer;
+  cursor: pointer;
+  
 }
 
 .NavBar {
-	margin-bottom: 20px
+  padding-bottom: 20px;
+  padding-top: 15px;
 }
 
+#add-btn {
+  margin-left: 15px;
+}
+#line-graph-margin-left {
+  margin-left: -80px !important;
+
+}
 .react-calendar  {
 	min-width: 500px !important;
 	/* margin: 0 auto; */
   /* width: 100px; */
-  margin-left:80px;
-	margin-bottom: 30px;
+  /* margin-left:80px; */
+  margin-bottom: 30px;
+  position: relative;
 
   }
 
   .center {
-	margin: auto;
-    width: 20%;
+	  margin: 0 auto;
+    width: 50%;
+    position: relative;
 
   }
 
@@ -27,10 +37,6 @@
 		margin-bottom: 20px;
   }
  
-  .left-check {
-    margin-left: 200px
-  }
-
 
   .float-right{
 	  float: right;
@@ -62,5 +68,16 @@
   #diet {
 	  background-color:#f49741;
   }
+
+  #legend a {
+    margin-right: 10px;
+    color: black;
+  }
+
+  #legend {
+    min-width: 600px;
+    /* margin-left: 80px; */
+  }
+  
   
 

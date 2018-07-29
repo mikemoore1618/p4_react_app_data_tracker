@@ -5,30 +5,30 @@ import Create from './views/Create'
 
 // float-right
 const NavBar = (props) => {
-    return(
+    return (
         <div className='NavBar'>
-        {props.currentUser
-            ? (
-                <Fragment>
-                    <Link to='/'>{props.currentUser.name}'s Data</Link>
-                    
-                    <button>
-                        <Create />
-                    </button>
+            {props.currentUser
+                ? (
+                    <Fragment>
+                        <Link to='/'>{props.currentUser.name}'s Data</Link>
 
-                    <Link to='/logout'>
-                        <button className='float-right'>Log Out</button>
-                    </Link>
-                    
-                </Fragment>
-            )
-            : (
-                <Fragment>
-                    <Link to='/login'>Log In</Link>
-                    <Link to='/signup'>Sign Up</Link>
-                </Fragment>
-            )
-        }
+                        <button id='add-btn'>
+                            <Create />
+                        </button>
+
+                        <Link to='/logout'>
+                            <button className='float-right'>Log Out</button>
+                        </Link>
+
+                    </Fragment>
+                )
+                : (
+                    <Fragment>
+                        <Link to='/login'>Log In</Link>
+                        <Link to='/signup'>Sign Up</Link>
+                    </Fragment>
+                )
+            }
         </div>
     )
 }
