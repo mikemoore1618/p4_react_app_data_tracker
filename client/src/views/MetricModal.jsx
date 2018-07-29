@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import { Modal } from 'semantic-ui-react'
+import { Modal, Button } from 'semantic-ui-react'
 import { formattedDate } from '../helpers'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts'
 import InputForm from './InputForm'
 
 
@@ -27,23 +27,28 @@ const MetricModal = (props) => {
                             {metrics.map((m) => {
                                 return (
                                     <Fragment key={m._id}>
-                                        <BarChart width={600} height={300} data={[m]}
+                                    
+                                        <BarChart classname='center' width={600} height={300} data={[m]}
                                             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                                             <XAxis dataKey="name" />
                                             <YAxis />
                                             <Tooltip />
-                                            <Legend />
                                             <Bar dataKey="sleep" fill="#4198f4" legendType="circle" />
                                             <Bar dataKey="stress" fill="#f44242" legendType="circle" />
                                             <Bar dataKey="mood" fill="#f4dc41" legendType="circle" />
                                             <Bar dataKey="energy" fill="#41f47c" legendType="circle" />
                                             <Bar dataKey="diet" fill="#f49741" legendType="circle" />
                                         </BarChart>
-
-                                        <button onClick={() => { handleDelete(m._id) }}>Delete</button>
+                                        <div id='legend' classname='center'>
+                                            <div className="circle" id='sleep'></div> <a>Sleep</a>
+                                            <div className="circle" id='stress'></div>  <a>Stress</a>
+                                            <div className="circle" id='mood'></div>  <a>Mood</a>
+                                            <div className="circle" id='energy'></div>  <a>Energy</a>
+                                            <div className="circle" id='diet'></div>  <a>Diet</a>
+                                        </div>
 
                                         <Modal size="mini" trigger={
-                                            <button onClick={() => handleEditClick(m._id)}>Edit</button>
+                                            <Button onClick={() => handleEditClick(m._id)}>Edit</Button>
                                         }>
                                             <Modal.Header>Edit {formattedDate(m.createdAt)}</Modal.Header>
                                             <Modal.Content>
@@ -56,6 +61,7 @@ const MetricModal = (props) => {
                                                 </Modal.Description>
                                             </Modal.Content>
                                         </Modal>
+                                        <Button onClick={() => { handleDelete(m._id) }}>Delete</Button>
                                     </Fragment>
                                 )
                             })}

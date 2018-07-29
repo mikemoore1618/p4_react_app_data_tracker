@@ -169,7 +169,7 @@ class Metrics extends React.Component {
           <input className='check' type="checkbox" name="stress" checked={filter.stress} onChange={this.handleInputCheck} />
           <input className='check' type="checkbox" name="mood" checked={filter.mood} onChange={this.handleInputCheck} />
           <input className='check' type="checkbox" name="energy" checked={filter.energy} onChange={this.handleInputCheck} />
-          <input className='check' type="checkbox" name="diet" checked={filter.diet} onChange={this.handleInputCheck} />
+          <input type="checkbox" name="diet" checked={filter.diet} onChange={this.handleInputCheck} />
         </div>
 
 
