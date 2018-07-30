@@ -32,9 +32,7 @@ class SignUp extends React.Component {
   render() {
     const { name, email, password } = this.state.fields
     return (
-      <div className="SignUp">
-        <div className="row">
-          <div className="column column-33 column-offset-33">
+      <div>
             <h1>Sign Up</h1>
             <form
               onChange={this.onInputChange.bind(this)}
@@ -52,8 +50,6 @@ class SignUp extends React.Component {
               <Button>Submit</Button>
             </form>
           </div>
-        </div>
-      </div>
     )
   }
 }

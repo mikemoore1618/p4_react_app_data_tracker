@@ -31,9 +31,7 @@ class LogIn extends React.Component {
   render() {
       const { email, password } = this.state.fields
     return (
-      <div className="LogIn">
-        <div className="row">
-          <div className="column column-33 column-offset-33">
+      <div >
             <h1>Log In</h1>
             <form
               onChange={this.onInputChange.bind(this)}
@@ -47,8 +45,6 @@ class LogIn extends React.Component {
               <br/>
               <Button>Submit</Button>
             </form>
-          </div>
-        </div>
       </div>
     )
   }

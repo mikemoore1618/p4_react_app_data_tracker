@@ -39,29 +39,29 @@ class App extends Component {
             return <LogIn {...routeProps} onLogInSuccess={this.onAuthSuccess.bind(this)}/>
           }}/>
 
-          <Route exact path='/metrics' render={(routeProps) => {
+          {/* <Route exact path='/metrics' render={(routeProps) => {
             return this.state.currentUser
             ? <Metrics {...routeProps}/>
             : <Redirect to="/login" />
-          }} />
+          }} /> */}
 
-          <Route exact path='/create' render={(routeProps) => {
+          {/* <Route exact path='/create' render={(routeProps) => {
             return this.state.currentUser
             ? <Create {...routeProps}/>
             : <Redirect to="/login" />
-          }} />
+          }} /> */}
 
-          <Route exact path='/metrics/:id/edit' render={(routeProps) => {
+          {/* <Route exact path='/metrics/:id/edit' render={(routeProps) => {
             return this.state.currentUser
             ? <Edit {...routeProps}/>
             : <Redirect to="/login" />
-          }} />
+          }} /> */}
 
-          <Route exact path='/metrics/:id' render={(routeProps) => {
+          {/* <Route exact path='/metrics/:id' render={(routeProps) => {
             return this.state.currentUser
             ? <Metrics {...routeProps}/>
             : <Redirect to="/login" />
-          }} />
+          }} /> */}
 
           <Route exact path='/logout' render={(routeProps) => {
             return <LogOut { ...routeProps} onLogOutSuccess={this.onLogOutSuccess.bind(this)}/>
