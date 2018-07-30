@@ -34,9 +34,14 @@ h3 {
     
 }
 
-.check {
+.filter-toggles input {
 		margin-right: 57px;
 		margin-bottom: 20px;
+}
+
+.filter-toggles input:last-child {
+  margin-right: 0;
+  margin-bottom: 0;
 }
  
 .float-right{

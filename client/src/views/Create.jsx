@@ -37,18 +37,17 @@ class Create extends Component {
             data: { ...metric, createdAt: (new Date(metric.createdAt)) }  // .toGMTString()?
         }).then(apiResponse => {
             console.log("Metric created???")
-            this.closeModal()
+            // this.closeModal()
+            this.props.history.push('/')
         })
         //add to list without refreshing page (this.state.metrics array?)
 
     }
 
     render() {
-
         return (
             <div>
-                <a onClick={this.openModal}>Add</a>
-                <Modal size='mini' open={this.state.open} onClose={this.closeModal}>
+                <Modal size='mini' open onClose={this.props.history.goBack}>
                     <Modal.Header>Add Data</Modal.Header>
                     <Modal.Content>
                         <Modal.Description>

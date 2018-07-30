@@ -7,7 +7,6 @@ import LogIn from './views/LogIn'
 import Metrics from './views/Metrics'
 import LogOut from './views/LogOut'
 import Create from './views/Create'
-import Edit from './views/Edit';
 import { Container } from 'semantic-ui-react';
 
 
@@ -45,11 +44,11 @@ class App extends Component {
             : <Redirect to="/login" />
           }} /> */}
 
-          {/* <Route exact path='/create' render={(routeProps) => {
+          <Route exact path='/metrics/new' render={(routeProps) => {
             return this.state.currentUser
             ? <Create {...routeProps}/>
             : <Redirect to="/login" />
-          }} /> */}
+          }} />
 
           {/* <Route exact path='/metrics/:id/edit' render={(routeProps) => {
             return this.state.currentUser

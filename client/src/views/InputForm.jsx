@@ -14,7 +14,7 @@ class InputForm extends React.Component {
     render() {
         let { sleep, stress, energy, mood, diet, meditation, exersize, createdAt, _id } = this.props.metric
         console.log(this.props.metric)
-        let { handleSubmit, handleChange } = this.props;
+        let { handleChange } = this.props;
         return (
             <div className='center'>
 
