@@ -6,6 +6,7 @@ import Legend from './Legend'
 import Toggles from './Toggles'
 import Calendar from 'react-calendar'
 import MetricModal from '../MetricModal'
+import { Icon } from 'semantic-ui-react'
 
 const colorMappings = {
   sleep: "#4198f4",
@@ -14,7 +15,7 @@ const colorMappings = {
   meditation: "#774df5",
   energy: "#41f47c",
   diet: "#f49741",
-  exersize: "#f552f5"
+  exercise: "#dd65ed"
 }
 
 const apiClient = axios.create()
@@ -29,7 +30,7 @@ class Metrics extends React.Component {
       meditation: true,
       energy: true,
       diet: true,
-      exersize: true
+      exercise: true
     },
     selectedDate: null,
     open: false,
@@ -98,7 +99,7 @@ class Metrics extends React.Component {
       data: this.state.metricBeingEdited
     })
       .then(apiResponse => {
-        console.log(apiResponse)
+        // console.log(apiResponse)
         const metrics = apiResponse.data.payload
 
         this.setState({ metrics });
@@ -125,6 +126,28 @@ class Metrics extends React.Component {
       open: true
     })
   }
+
+
+  //ATTEMPT TO GET DATES WITH NO DATA ENTRY TO GREY OUT
+  // CHECK REACT-CALENDAR DOCUMENTATION
+  // checkDate(date) {
+  //   // const dateClicked = formattedDate(date);
+  //   // dateClicked[3] == 2;
+  //   // let find = this.state.metrics.find(m => formattedDate(m.createdAt) === dateClicked);
+  //   // let bool = (!!find) ? true : false;
+  //   // return bool;
+  //   date.getMonth() === 5
+  // }
+
+  // checkDisabled = ({ date }) => this.state.metrics.find(m => formattedDate(m.createdAt) === formattedDate(date));
+  //   // const dateClicked = formattedDate(date);
+  //   // debugger
+  //   // dateClicked[3] == 2;
+  //   // let find = this.state.metrics.find(m => formattedDate(m.createdAt) === dateClicked);
+  //   // let bool = (!!find) ? true : false;
+  //   // debugger
+  //   // return bool;
+  
 
   render() {
     const formattedMetrics = this.state.metrics.map((m) => {
@@ -170,7 +193,7 @@ class Metrics extends React.Component {
             <Toggles handleInputCheck={this.handleInputCheck} filter={filter} />
           </div>
         </div>
-        
+
         {/* LIST OF ALL METRICS */}
         {/* <ul>
             {formattedMetrics.map((m) => {
@@ -183,6 +206,8 @@ class Metrics extends React.Component {
             </ul> */}
 
         <MetricModal
+          filter={filter}
+          colorMappings={colorMappings}
           open={open}
           onClose={this.closeModal}
           handleEditClick={this.onEditMetric}
@@ -191,10 +216,15 @@ class Metrics extends React.Component {
           handleDelete={this.handleDelete}
           selectedDate={selectedDate}
           metricBeingEdited={this.state.metricBeingEdited}
-          metrics={metrics.filter((m) => formattedDate(m.createdAt) === selectedDate)} />
-
-        <Calendar onClickDay={this.handleDateClick} />
-        <h5 className='legend'>Mike Moore 2018 </h5>
+          metrics={metrics.filter((m) => formattedDate(m.createdAt) === selectedDate)} 
+          />
+        
+        {metrics[0] !== undefined && 
+          <Calendar onClickDay={this.handleDateClick} 
+          // tileDisabled={this.checkDisabled}/> 
+          />
+        }
+        <h5 className='legend'>Mike Moore 2018 <Icon id='peace'name='peace hand outline' size='large' /> </h5>
 
       </div>
 

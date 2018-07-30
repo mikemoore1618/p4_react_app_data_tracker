@@ -56,11 +56,11 @@ class App extends Component {
             : <Redirect to="/login" />
           }} /> */}
 
-          {/* <Route exact path='/metrics/:id' render={(routeProps) => {
+          <Route exact path='/metrics/:id' render={(routeProps) => {
             return this.state.currentUser
             ? <Metrics {...routeProps}/>
             : <Redirect to="/login" />
-          }} /> */}
+          }} />
 
           <Route exact path='/logout' render={(routeProps) => {
             return <LogOut { ...routeProps} onLogOutSuccess={this.onLogOutSuccess.bind(this)}/>

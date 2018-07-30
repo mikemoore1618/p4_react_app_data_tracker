@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from 'semantic-ui-react'
+import { Button, Icon } from 'semantic-ui-react'
 
 
 // float-right
@@ -10,15 +10,17 @@ const NavBar = (props) => {
             {props.currentUser
                 ? (
                     <Fragment>
-                        <Link to='/'><h3>{props.currentUser.name}'s Data</h3></Link>
+                        <Link to='/'><h2>{props.currentUser.name}</h2></Link>
 
-                        <Button as={Link} id="add-btn" to="/metrics/new">
-                            Add
-                        </Button>
 
-                        <Link to='/logout'>
-                            <Button id='logout-btn'className='float-right'>Log Out</Button>
+                        <Link  to="/metrics/new">              
+                        <Icon id='add-btn' name='plus' size='big' />
                         </Link>
+
+                        <Link className='float-right' to='/logout'>
+                            <Icon id='logout-btn'  name='log out' size='big'/>
+                        </Link>
+
 
                     </Fragment>
                 )

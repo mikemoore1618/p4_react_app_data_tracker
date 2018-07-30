@@ -7,7 +7,7 @@ class LogOut extends React.Component {
     componentDidMount() {
         httpClient.logOut()
         this.props.onLogOutSuccess()
-        // console.log('logging out')
+        // ('logging out')
     }
     render() {
         return <Redirect to='/login'/>

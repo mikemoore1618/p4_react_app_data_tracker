@@ -12,8 +12,8 @@ class InputForm extends React.Component {
     }
 
     render() {
-        let { sleep, stress, energy, mood, diet, meditation, exersize, createdAt, _id } = this.props.metric
-        console.log(this.props.metric)
+        let { sleep, stress, energy, mood, diet, meditation, exercise, createdAt, _id } = this.props.metric
+        // console.log(this.props.metric)
         let { handleChange } = this.props;
         return (
             <div className='center'>
@@ -59,7 +59,7 @@ class InputForm extends React.Component {
                     </label>
                     <br />
                     <br />
-                    
+
                     <label >
                         Diet: {diet}
                         <br />
@@ -69,9 +69,9 @@ class InputForm extends React.Component {
                     <br />
 
                     <label >
-                        Exersize: {exersize}
+                        Exercise: {exercise}
                         <br />
-                        <input type="range" min='1' max='10' name="exersize" step="0.1" data-id={_id} onChange={handleChange} value={exersize} />
+                        <input type="range" min='1' max='10' name="exercise" step="0.1" data-id={_id} onChange={handleChange} value={exercise} />
                     </label>
                     <br />
                     <br />

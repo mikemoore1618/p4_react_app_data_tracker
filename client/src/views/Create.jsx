@@ -13,7 +13,7 @@ class Create extends Component {
             meditation: '',
             energy: '',
             diet: '',
-            exersize: '',
+            exercise: '',
             createdAt: formattedDate(new Date(), 'YYYY-MM-DD'),
         },
         open: false
@@ -36,7 +36,7 @@ class Create extends Component {
             url: '/api/metrics',
             data: { ...metric, createdAt: (new Date(metric.createdAt)) }  // .toGMTString()?
         }).then(apiResponse => {
-            console.log("Metric created???")
+            // console.log("Metric created???")
             // this.closeModal()
             this.props.history.push('/')
         })

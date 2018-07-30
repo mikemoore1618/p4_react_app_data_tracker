@@ -6,7 +6,7 @@ module.exports = {
 	// show all metrics
 	index: (req, res) => {
 		Metric.find({ _by: req.user._id }, (err, metrics) => {
-			console.log(metrics)
+			// console.log(metrics)
 			if (err) return res.json({ message: "ERROR", payload: null, code: err.code })
 			res.json({ message: "SUCCESS", payload: metrics })
 		})
@@ -31,7 +31,7 @@ module.exports = {
 	// update an existing metric
 	update: (req, res) => {
 		Metric.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedMetric) => {
-			console.log(req.body)
+			// console.log(req.body)
 			if (err) return res.json({ message: "ERROR", payload: null, code: err.code })
 			Metric.find({ _by: req.user._id }, (err, metrics) => {
 				res.json({ message: "SUCCESS", payload: metrics })

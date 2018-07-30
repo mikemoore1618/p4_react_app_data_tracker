@@ -1,22 +1,19 @@
-.NavBar a, .NavBar button {
-  cursor: pointer; 
-}
 
 .NavBar {
   margin-bottom: 20px;
-  padding: 5px 0;
 }
 
-h3 {
+h2 {
   display: inline-block;
   padding-top: 10px;
 }
 
 #add-btn {
   margin-left: 15px;
+  margin-top: -7px;
 }
 #logout-btn {
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 #line-graph-margin-left {
@@ -44,6 +41,9 @@ h3 {
   margin-bottom: 0;
 }
  
+i.icon:hover {
+  cursor: pointer;
+}
 .float-right{
 	  float: right;
 }
@@ -56,37 +56,10 @@ h3 {
     position: relative;
 }
 
-#sleep {
-	  background-color:#4198f4;
-}
-  
-#stress {
-	  background-color:#f44242;
-}
-
-#exersize {
-  background-color: #f552f5;
-}
-
-#meditation {
-  background-color: #774df5;
-}
-  
-#mood {
-	  background-color:#f4dc41;
-}
-
-#energy {
-	  background-color:#41f47c;
-}
-
-#diet {
-	  background-color:#f49741;
-}
-
 .legend a {
     margin-right: 10px;
-    color: #505050;
+    margin-left: 5px;
+    color: #605f5f;
 }
 
 .legend {
@@ -116,4 +89,8 @@ h3 {
 h5 {
   color: #4183c4;
   padding-bottom: 20px;
+}
+
+#peace {
+  cursor: default;
 }

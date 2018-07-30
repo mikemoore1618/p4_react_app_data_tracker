@@ -7,7 +7,7 @@ const metricSchema = new mongoose.Schema({
     meditation: Number,
     energy: Number,
     diet: Number,
-    exersize: Number,
+    exercise: Number,
     createdAt: Date,
     _by: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 })
