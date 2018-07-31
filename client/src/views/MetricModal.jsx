@@ -30,7 +30,7 @@ const MetricModal = (props) => {
                         {metrics[0] === undefined &&
                             <div>
                                 <h2>No Data</h2>
-                                <Link to="/metrics/new">
+                                <Link to={{pathname: "/metrics/new", state: {date: selectedDate}}}>
                                     <Icon id='add-btn' name='plus' size='big' />
                                 </Link>
                             </div>

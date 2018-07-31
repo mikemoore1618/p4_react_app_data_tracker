@@ -14,9 +14,21 @@ class Create extends Component {
             energy: '',
             diet: '',
             exercise: '',
-            createdAt: formattedDate(new Date(), 'YYYY-MM-DD'),
+            createdAt: formattedDate((new Date()).toLocaleDateString(), 'YYYY-MM-DD'),
         },
         open: false
+    }
+
+    componentDidMount() {
+        const { state } = this.props.location
+        if(state && state.date) {
+            this.setState({
+                metric: {
+                    ...this.state.metric,
+                    createdAt: formattedDate(state.date, 'YYYY-MM-DD')
+                }
+            })
+        }
     }
 
     openModal = () => this.setState({ open: true });
@@ -45,6 +57,8 @@ class Create extends Component {
     }
 
     render() {
+        
+        console.log()
         return (
             <div>
                 <Modal size='mini' open onClose={this.props.history.goBack}>
