@@ -1,7 +1,6 @@
 const
 	Metric = require('../models/Metric.js')
 
-
 module.exports = {
 	// show all metrics
 	index: (req, res) => {

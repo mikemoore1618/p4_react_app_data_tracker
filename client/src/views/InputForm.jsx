@@ -17,8 +17,6 @@ class InputForm extends React.Component {
         let { handleChange } = this.props;
         return (
             <div className='center'>
-
-
                 <form data-id={_id} onSubmit={this.handleFormSubmit.bind(this)}>
                     <label >
                         Sleep: {sleep}
@@ -85,7 +83,6 @@ class InputForm extends React.Component {
                     <br />
                     <Button type="submit" value="Submit">Submit</Button>
                 </form>
-
             </div>
         )
     }

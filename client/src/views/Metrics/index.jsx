@@ -101,7 +101,6 @@ class Metrics extends React.Component {
       .then(apiResponse => {
         // console.log(apiResponse)
         const metrics = apiResponse.data.payload
-
         this.setState({ metrics });
       })
     this.closeModal()
@@ -127,7 +126,6 @@ class Metrics extends React.Component {
     })
   }
 
-
   //ATTEMPT TO GET DATES WITH NO DATA ENTRY TO GREY OUT
   // CHECK REACT-CALENDAR DOCUMENTATION
   // checkDate(date) {
@@ -147,7 +145,7 @@ class Metrics extends React.Component {
   //   // let bool = (!!find) ? true : false;
   //   // debugger
   //   // return bool;
-  
+
 
   render() {
     const formattedMetrics = this.state.metrics.map((m) => {
@@ -156,7 +154,7 @@ class Metrics extends React.Component {
 
     const { filter, open, metrics, selectedDate } = this.state
     return (
-      <div className="center">
+      <div id='index-padding' className="center">
         <div id='line-graph-margin-left'>
 
           <LineChart animationEasing="ease-out" width={600} height={300} data={formattedMetrics}
@@ -182,18 +180,13 @@ class Metrics extends React.Component {
             <Brush dataKey="createdAt" />
           </LineChart>
         </div>
-
         <div id="legend-margin" className='legend'>
-
           <Legend filter={filter} colorMappings={colorMappings} />
-
           <br />
-
           <div className="filter-toggles">
             <Toggles handleInputCheck={this.handleInputCheck} filter={filter} />
           </div>
         </div>
-
         {/* LIST OF ALL METRICS */}
         {/* <ul>
             {formattedMetrics.map((m) => {
@@ -204,7 +197,6 @@ class Metrics extends React.Component {
             )
             })}
             </ul> */}
-
         <MetricModal
           filter={filter}
           colorMappings={colorMappings}
@@ -216,16 +208,14 @@ class Metrics extends React.Component {
           handleDelete={this.handleDelete}
           selectedDate={selectedDate}
           metricBeingEdited={this.state.metricBeingEdited}
-          metrics={metrics.filter((m) => formattedDate(m.createdAt) === selectedDate)} 
-          />
-        
-        {metrics[0] !== undefined && 
-          <Calendar onClickDay={this.handleDateClick} 
+          metrics={metrics.filter((m) => formattedDate(m.createdAt) === selectedDate)}
+        />
+        {metrics[0] !== undefined &&
+          <Calendar onClickDay={this.handleDateClick}
           // tileDisabled={this.checkDisabled}/> 
           />
         }
-        <h5 className='legend'>Mike Moore 2018 <Icon id='peace'name='peace hand outline' size='large' /> </h5>
-
+        <h5 className='legend'>Mike Moore 2018 <Icon id='peace' name='peace hand outline' size='large' /> </h5>
       </div>
 
     )

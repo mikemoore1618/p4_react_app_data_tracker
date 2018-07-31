@@ -2,8 +2,6 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Icon } from 'semantic-ui-react'
 
-
-// float-right
 const NavBar = (props) => {
     return (
         <div className='NavBar'>
@@ -11,17 +9,12 @@ const NavBar = (props) => {
                 ? (
                     <Fragment>
                         <Link to='/'><h2>{props.currentUser.name}</h2></Link>
-
-
-                        <Link  to="/metrics/new">              
-                        <Icon id='add-btn' name='plus' size='big' />
+                        <Link to="/metrics/new">
+                            <Icon id='add-btn' name='plus' size='large' />
                         </Link>
-
                         <Link className='float-right' to='/logout'>
-                            <Icon id='logout-btn'  name='log out' size='big'/>
+                            <Icon id='logout-btn' name='log out' size='large' />
                         </Link>
-
-
                     </Fragment>
                 )
                 : (
