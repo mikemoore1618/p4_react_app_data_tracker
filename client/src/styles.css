@@ -8,12 +8,14 @@ h2 {
 }
 
 #add-btn {
-  margin-left: 15px;
-  margin-top: -7px;
+  margin-left: 3em;
+  font-size: 1.6em;
 }
 
 #logout-btn {
   margin-top: 14px;
+  float: right;
+  font-size: 1.6em;
 }
 
 #line-graph-margin-left {
