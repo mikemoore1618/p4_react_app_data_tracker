@@ -10,12 +10,13 @@ const NavBar = (props) => {
                     <Fragment>
                         <Link to='/'><h2>{props.currentUser.name}</h2></Link>
                         <Link to="/metrics/new">
-                            <a>Create</a>
-                            <Icon id='add-btn' name='plus' size='large' />
+                            <a id='add-btn' >Add
+                            <Icon name='plus' size='large' />
+                            </a>
                         </Link>
                         <Link className='float-right' to='/logout'>
-                            <a>Logout</a>
-                            <Icon id='logout-btn' name='log out' size='large' />
+                            <a id="logout-btn">Logout</a>
+                            <Icon name='log out' size='large' />
                         </Link>
                     </Fragment>
                 )
