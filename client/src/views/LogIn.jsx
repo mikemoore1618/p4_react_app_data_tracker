@@ -37,7 +37,7 @@ class LogIn extends React.Component {
               onChange={this.onInputChange.bind(this)}
               onSubmit={this.onFormSubmit.bind(this)}
             >
-              <input type="text" placeholder="Email" name="email" autoComplete="off" value={email}/>
+              <input type="email" placeholder="Email" name="email" autoComplete="off" value={email}/>
               <br/>
               <br/>
               <input type="password" placeholder="Password" name="password" autoComplete="off" value={password}/>
