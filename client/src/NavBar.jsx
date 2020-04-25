@@ -11,12 +11,12 @@ const NavBar = (props) => {
                         <Link to='/'><h2>{props.currentUser.name}</h2></Link>
                         <Link to="/metrics/new">
                             <a id='add-btn' >Add
-                            <Icon name='plus' />
+                            {/* <Icon name='plus' /> */}
                             </a>
                         </Link>
                         <Link id="logout-btn" to='/logout'>
                             <a>Logout
-                            <Icon name='log out' />
+                            {/* <Icon name='log out' /> */}
                             </a>
                         </Link>
                     </Fragment>
